@@ -38,8 +38,8 @@
 
     <ItemGroup>
       <Folder Include="ClientApp\node_modules" />
-      <Folder Include="ClientApp\src\app\core\components" />
-      <Folder Include="ClientApp\src\app\core\home" />
+      <Folder Include="ClientApp\src\app\core\home\components" />
+      <Folder Include="ClientApp\src\assets\media\images\widget" />
     </ItemGroup>
 
     <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

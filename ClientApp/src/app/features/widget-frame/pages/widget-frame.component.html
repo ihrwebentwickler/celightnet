@@ -1,0 +1,14 @@
+<div class="widget-frame-content">
+  <div class="title-bar">
+    <p>
+      <span><b>{{ widget?.label }}</b></span>
+      <span>{{ widget?.description }}</span>
+    </p>
+  </div>
+  <div class="widget-frame-body" *ngIf="widget">
+    <app-widget [widget]="widget"
+                [component]="widget.component"
+                [description]="widget.description">
+    </app-widget>
+  </div>
+</div>

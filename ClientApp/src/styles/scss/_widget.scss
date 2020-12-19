@@ -1,0 +1,41 @@
+/* 1.) widget generel */
+/* ----------------------------------------------------- */
+gridster {
+background-repeat: no-repeat;
+background-size:cover;
+background-position: center;
+}
+/* ----------------------------------------------------- */
+
+/* 2.) widget content */
+/* ----------------------------------------------------- */
+.widget-frame-content {
+  width: 100%;
+  height: 100%;
+
+  .title-bar {
+    padding: 5px;
+    border-bottom: 1px solid black;
+    text-align: center;
+
+    p > span:last-child {
+      font-size: 0.8em;
+      padding-left: 10px;
+    }
+  }
+
+  .widget-frame-body {
+    padding: 6px;
+  }
+}
+/* ----------------------------------------------------- */
+
+
+/* ----------------------------------------------------- */
+// 3.) Buttons
+.round-action-button {
+  position: fixed;
+  top: 4px;
+  left: 10px;
+}
+/* ----------------------------------------------------- */

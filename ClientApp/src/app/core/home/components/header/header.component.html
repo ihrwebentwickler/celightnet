@@ -1,0 +1,26 @@
+<header>
+  <div>
+    <p class="logo">
+      <mat-icon class="colorFont">music_note</mat-icon>
+      CelightCMS
+    </p>
+  </div>
+  <div>
+    <button mat-button>
+      <mat-icon>library_add</mat-icon>
+      <span>manage Widgets</span></button>
+    <button mat-button [matMenuTriggerFor]="menu">
+      <mat-icon>expand_more</mat-icon>
+      <span>Menu</span></button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item (click)="onClickShowUserInfo()">
+        <mat-icon>face</mat-icon>
+        <span>Benutzer-Info</span>
+      </button>
+      <button mat-menu-item (click)="onClickLogout()">
+        <mat-icon>logout</mat-icon>
+        <span>Logout</span>
+      </button>
+    </mat-menu>
+  </div>
+</header>

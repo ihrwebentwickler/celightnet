@@ -1,0 +1,29 @@
+.celightcms {
+  header {
+    width: 100%;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.25);
+    height: $header-height;
+
+    div {
+      line-height: $header-height;
+      display: inline-block;
+      vertical-align: middle;
+      text-align: center;
+    }
+
+    div:first-child {
+      padding-left: 4%;
+    }
+
+    div:last-child {
+      padding-left: 7%;
+    }
+
+    .logo {
+      mat-icon {
+        vertical-align: sub;
+      }
+    }
+  }
+}
+

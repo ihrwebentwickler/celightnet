@@ -1,19 +1,19 @@
 import {ComponentFixture, TestBed, waitForAsync} from '@angular/core/testing';
-import {LoremIpsumWidgetComponent} from './lorem-ipsum.component';
+import {UserInfoDialogComponent} from './user-info-dialog.component';
 
-describe('LoremIpsumComponent', () => {
-  let component: LoremIpsumWidgetComponent;
-  let fixture: ComponentFixture<LoremIpsumWidgetComponent>;
+describe('UserInfoDialogComponent', () => {
+  let component: UserInfoDialogComponent;
+  let fixture: ComponentFixture<UserInfoDialogComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [LoremIpsumWidgetComponent]
+      declarations: [UserInfoDialogComponent]
     })
       .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(LoremIpsumWidgetComponent);
+    fixture = TestBed.createComponent(UserInfoDialogComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

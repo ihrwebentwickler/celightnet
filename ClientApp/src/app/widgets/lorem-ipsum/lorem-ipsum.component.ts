@@ -1,12 +1,10 @@
-import {Component, OnInit, Input} from '@angular/core';
+import {Component} from '@angular/core';
 
 @Component({
-  selector: 'celightcms-lorem-ipsum',
+  selector: 'app-lorem-ipsum',
   templateUrl: './lorem-ipsum.component.html'
 })
 export class LoremIpsumWidgetComponent {
-  static KEY = 'lorem-ipsum';
-
   constructor() {
   }
 }

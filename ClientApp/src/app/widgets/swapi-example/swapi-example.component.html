@@ -1,0 +1,40 @@
+<div>
+  <mat-form-field>
+    <mat-label>Search in Data</mat-label>
+    <label>
+      <input matInput (keyup)="onApplyFilter($event)" placeholder="Suche Star-Wars-Filme" #input>
+    </label>
+  </mat-form-field>
+</div>
+
+<div class="mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource" matSort>
+    <ng-container matColumnDef="title">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Title</mat-header-cell>
+      <mat-cell *matCellDef="let row;">{{row.title}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="created">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Created</mat-header-cell>
+      <mat-cell *matCellDef="let row;">{{row.created | date:'d.MM.YYYY'}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="director">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Director</mat-header-cell>
+      <mat-cell *matCellDef="let row;">{{row.director}}</mat-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="displayedColumns">
+    </mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+  </table>
+</div>
+<div *ngIf="isLoading" class="loading-spinner">
+  <mat-progress-spinner
+    color="primary"
+    mode="indeterminate">
+  </mat-progress-spinner>
+</div>
+<mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+<div *ngIf="!isLoading && dataSource?.filteredData">
+  <button mat-mini-fab class="round-action-button">
+    <mat-icon>delete_forever</mat-icon>
+  </button>
+</div>
