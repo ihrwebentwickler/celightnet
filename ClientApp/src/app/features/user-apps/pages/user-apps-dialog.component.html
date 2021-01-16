@@ -1,0 +1,13 @@
+<h1 mat-dialog-title>
+  Benutzer-Info
+</h1>
+<div mat-dialog-content *ngIf="store$ | async as store">
+  <mat-list>
+    <mat-list-item>Benutzer-Name: {{store.user.username}}</mat-list-item>
+  </mat-list>
+</div>
+<div mat-dialog-actions>
+  <button mat-raised-button color="primary" [mat-dialog-close]="true">
+    Schliessen
+  </button>
+</div>

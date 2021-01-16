@@ -9,6 +9,10 @@
 
 <div class="mat-elevation-z8">
   <table mat-table [dataSource]="dataSource" matSort>
+    <ng-container matColumnDef="idCustomer">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>C-Id</mat-header-cell>
+      <mat-cell *matCellDef="let row;">{{row.idCustomer}}</mat-cell>
+    </ng-container>
     <ng-container matColumnDef="firstName">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Firstname</mat-header-cell>
       <mat-cell *matCellDef="let row;">{{row.firstName}}</mat-cell>
@@ -22,7 +26,7 @@
       <mat-cell *matCellDef="let row;">{{row.department}}</mat-cell>
     </ng-container>
     <ng-container matColumnDef="employedSince">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>Employed since</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header>since</mat-header-cell>
       <mat-cell *matCellDef="let row;">{{row.employedSince | date:'d.MM.YYYY'}}</mat-cell>
     </ng-container>
     <mat-header-row *matHeaderRowDef="displayedColumns">

@@ -87,21 +87,28 @@ html, body {
   font-size: 1rem;
 }
 
-.colorFont {
-  color: $link-color;
-}
-
 .center {
   text-align: center;
 }
 
-a {
+a, .colorFont {
   color: $link-color;
   text-decoration: none;
   cursor: pointer;
 
   &:hover {
     color: $link-color-hover;
+  }
+}
+
+.rotate {
+  animation: spin 4s linear infinite;
+}
+
+@keyframes spin {
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
   }
 }
 
@@ -112,4 +119,6 @@ a {
     height: calc(100% - #{$header-height});
   }
 }
+
+/* --------------------------------------------------------------- */
 

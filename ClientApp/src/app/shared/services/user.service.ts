@@ -1,4 +1,6 @@
 import {Injectable} from '@angular/core';
+import {Auth} from 'aws-amplify';
+import {CognitoUser} from '@aws-amplify/auth';
 import {IUser} from '../interfaces/users.interface';
 
 @Injectable({
@@ -6,7 +8,8 @@ import {IUser} from '../interfaces/users.interface';
 })
 export class UserService {
 
-  constructor() {
+  constructor(
+  ) {
   }
 
   getUser(): IUser {
@@ -15,6 +18,12 @@ export class UserService {
       lastname: 'test-lastname',
       activeWidgets: ['LoremIpsumWidget']
     };
+  }
+
+  async getAwsUserName(): Promise<string> {
+    return await Auth.currentUserInfo().then(user => {
+      return user.username ? user.username : null;
+    });
   }
 
   addWidgetsOfUser(): void {
@@ -36,5 +45,13 @@ export class UserService {
       this.$appStoreData.widgets.push(item);
     }
      */
+  }
+
+  signOut(): Promise<void> {
+    return Auth.signOut();
+  }
+
+  signIn(username: string, password: string): Promise<CognitoUser | { code: string }> {
+    return Auth.signIn(username, password);
   }
 }

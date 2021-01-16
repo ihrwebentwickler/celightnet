@@ -5,10 +5,10 @@ import {Observable} from 'rxjs';
 import {IAppState} from '../../../shared/interfaces/state.interface';
 
 @Component({
-  selector: 'app-user-info-dialog',
-  templateUrl: './user-info-dialog.component.html'
+  selector: 'app-user-apps-dialog',
+  templateUrl: './user-apps-dialog.component.html'
 })
-export class UserInfoDialogComponent implements OnInit {
+export class UserAppsDialogComponent implements OnInit {
   store$!: Observable<IAppState>;
 
   constructor(
@@ -20,5 +20,8 @@ export class UserInfoDialogComponent implements OnInit {
 
   ngOnInit(): void {
     this.store$ = this.appStateService.appStore;
+    this.store$.subscribe(data => {
+      console.log(data);
+    });
   }
 }

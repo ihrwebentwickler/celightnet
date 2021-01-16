@@ -6,7 +6,8 @@
     </p>
   </div>
   <div>
-    <button mat-button>
+    <span>{{(store$ | async)?.user?.username}}</span>
+    <button mat-button (click)="onClickManageWidgets()">
       <mat-icon>library_add</mat-icon>
       <span>manage Widgets</span></button>
     <button mat-button [matMenuTriggerFor]="menu">

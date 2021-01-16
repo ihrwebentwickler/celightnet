@@ -10,13 +10,13 @@ import {MaterialModule} from '../material.module';
 import {Widgets} from './widgets';
 
 // widget-imports
-import {CosmosDbExampleComponent} from './cosmos-db-example/cosmos-db-example.component';
+import {AwsDataExampleComponent} from './aws-data-example/aws-data-example.component';
 import {SwapiExampleComponent} from './swapi-example/swapi-example.component';
 import {LoremIpsumWidgetComponent} from './lorem-ipsum/lorem-ipsum.component';
 
 @NgModule({
   declarations: [
-    CosmosDbExampleComponent,
+    AwsDataExampleComponent,
     SwapiExampleComponent,
     LoremIpsumWidgetComponent
   ],
@@ -36,9 +36,9 @@ import {LoremIpsumWidgetComponent} from './lorem-ipsum/lorem-ipsum.component';
         .registerWidget(SwapiExampleComponent)
         .withTitle('Title Star-Wars-List')
         .withDescription('A sample-widget with get-request')
-        .registerWidget(CosmosDbExampleComponent)
+        .registerWidget(AwsDataExampleComponent)
         .withTitle('Title User-List')
-        .withDescription('Get Example-Data from AZURE Cosmos-DB')
+        .withDescription('Get Example-Data from AWS')
         .initApp()
     }]
 })

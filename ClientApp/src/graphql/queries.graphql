@@ -1,0 +1,74 @@
+# this is an auto generated file. This will be overwritten
+query GetCelightCmsApps($idApps: Int!) {
+  getCelightCmsApps(idApps: $idApps) {
+    idApps
+    appKey
+  }
+}
+query ListCelightCmsApps(
+  $filter: TableCelightCmsAppsFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listCelightCmsApps(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      idApps
+      appKey
+    }
+    nextToken
+  }
+}
+query GetCelightCmsCustomer($idCustomer: String!) {
+  getCelightCmsCustomer(idCustomer: $idCustomer) {
+    idCustomer
+    firstName
+    lastName
+    department
+    employedSince
+  }
+}
+query ListCelightCmsCustomers(
+  $filter: TableCelightCmsCustomerFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listCelightCmsCustomers(
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+  ) {
+    items {
+      idCustomer
+      firstName
+      lastName
+      department
+      employedSince
+    }
+    nextToken
+  }
+}
+query GetCelightCmsUser($idUser: String!) {
+  getCelightCmsUser(idUser: $idUser) {
+    idUser
+    firstName
+    lastName
+    clientId
+    id_Apps
+  }
+}
+query ListCelightCmsUsers(
+  $filter: TableCelightCmsUserFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listCelightCmsUsers(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      idUser
+      firstName
+      lastName
+      clientId
+      id_Apps
+    }
+    nextToken
+  }
+}

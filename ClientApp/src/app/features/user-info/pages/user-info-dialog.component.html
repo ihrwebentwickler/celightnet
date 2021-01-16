@@ -1,16 +1,19 @@
 <h1 mat-dialog-title>
   Benutzer-Info
 </h1>
-<div mat-dialog-content>
+<div mat-dialog-content *ngIf="store$ | async as store">
   <mat-list>
-    <mat-list-item>Vorname/ Nachname: Corinna Mustermann</mat-list-item>
+    <mat-list-item>Benutzer-Name: {{store.user.username}}</mat-list-item>
     <mat-divider></mat-divider>
-    <mat-list-item>Abteilung: Rechnungswesen R12</mat-list-item>
+    <mat-list-item>Tech-Sub: {{store.user.attributes?.sub}}</mat-list-item>
     <mat-divider></mat-divider>
+    <mat-list-item>Email: {{store.user.attributes?.email}}</mat-list-item>
+    <mat-divider></mat-divider>
+    <mat-list-item>Email verifiziert: {{store.user.attributes.email_verified ? 'Ja' : 'Nein'}}</mat-list-item>
   </mat-list>
 </div>
 <div mat-dialog-actions>
-  <button mat-flat-button [mat-dialog-close]="true">
+  <button mat-raised-button color="primary" [mat-dialog-close]="true">
     Schliessen
   </button>
 </div>

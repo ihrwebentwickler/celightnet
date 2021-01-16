@@ -1,0 +1,145 @@
+# this is an auto generated file. This will be overwritten
+subscription OnCreateCelightCmsApps($idApps: Int, $appKey: String) {
+  onCreateCelightCmsApps(idApps: $idApps, appKey: $appKey) {
+    idApps
+    appKey
+  }
+}
+subscription OnUpdateCelightCmsApps($idApps: Int, $appKey: String) {
+  onUpdateCelightCmsApps(idApps: $idApps, appKey: $appKey) {
+    idApps
+    appKey
+  }
+}
+subscription OnDeleteCelightCmsApps($idApps: Int, $appKey: String) {
+  onDeleteCelightCmsApps(idApps: $idApps, appKey: $appKey) {
+    idApps
+    appKey
+  }
+}
+subscription OnCreateCelightCmsCustomer(
+  $idCustomer: String
+  $firstName: String
+  $lastName: String
+  $department: String
+  $employedSince: String
+) {
+  onCreateCelightCmsCustomer(
+    idCustomer: $idCustomer
+    firstName: $firstName
+    lastName: $lastName
+    department: $department
+    employedSince: $employedSince
+  ) {
+    idCustomer
+    firstName
+    lastName
+    department
+    employedSince
+  }
+}
+subscription OnUpdateCelightCmsCustomer(
+  $idCustomer: String
+  $firstName: String
+  $lastName: String
+  $department: String
+  $employedSince: String
+) {
+  onUpdateCelightCmsCustomer(
+    idCustomer: $idCustomer
+    firstName: $firstName
+    lastName: $lastName
+    department: $department
+    employedSince: $employedSince
+  ) {
+    idCustomer
+    firstName
+    lastName
+    department
+    employedSince
+  }
+}
+subscription OnDeleteCelightCmsCustomer(
+  $idCustomer: String
+  $firstName: String
+  $lastName: String
+  $department: String
+  $employedSince: String
+) {
+  onDeleteCelightCmsCustomer(
+    idCustomer: $idCustomer
+    firstName: $firstName
+    lastName: $lastName
+    department: $department
+    employedSince: $employedSince
+  ) {
+    idCustomer
+    firstName
+    lastName
+    department
+    employedSince
+  }
+}
+subscription OnCreateCelightCmsUser(
+  $idUser: String
+  $firstName: String
+  $lastName: String
+  $clientId: String
+  $id_Apps: [Int]
+) {
+  onCreateCelightCmsUser(
+    idUser: $idUser
+    firstName: $firstName
+    lastName: $lastName
+    clientId: $clientId
+    id_Apps: $id_Apps
+  ) {
+    idUser
+    firstName
+    lastName
+    clientId
+    id_Apps
+  }
+}
+subscription OnUpdateCelightCmsUser(
+  $idUser: String
+  $firstName: String
+  $lastName: String
+  $clientId: String
+  $id_Apps: [Int]
+) {
+  onUpdateCelightCmsUser(
+    idUser: $idUser
+    firstName: $firstName
+    lastName: $lastName
+    clientId: $clientId
+    id_Apps: $id_Apps
+  ) {
+    idUser
+    firstName
+    lastName
+    clientId
+    id_Apps
+  }
+}
+subscription OnDeleteCelightCmsUser(
+  $idUser: String
+  $firstName: String
+  $lastName: String
+  $clientId: String
+  $id_Apps: [Int]
+) {
+  onDeleteCelightCmsUser(
+    idUser: $idUser
+    firstName: $firstName
+    lastName: $lastName
+    clientId: $clientId
+    id_Apps: $id_Apps
+  ) {
+    idUser
+    firstName
+    lastName
+    clientId
+    id_Apps
+  }
+}

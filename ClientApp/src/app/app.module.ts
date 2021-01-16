@@ -3,40 +3,55 @@ import {GridsterModule} from 'angular-gridster2';
 import {NgModule} from '@angular/core';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {BrowserModule} from '@angular/platform-browser';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+
+/* AWS Amplify */
+import Amplify from 'aws-amplify';
+import {AmplifyUIAngularModule} from '@aws-amplify/ui-angular';
+// @ts-ignore
+import awsmobile from '../aws-exports.js';
+
+Amplify.configure(awsmobile);
 
 // own imports
 import {AppComponent} from './core/components/app.component';
 import {AppRoutingModule} from './app-routing.module';
-import {DynamicModule} from 'ng-dynamic-component';
-import {HeaderComponent} from './core/home/components/header/header.component';
+import {AppStateService} from './shared/services/app-state.service';
+import {AuthGuardService} from './shared/services/auth-guard.service';
+import {AuthService} from './shared/services/auth.service';
+import {LoginComponent} from './features/login/pages/login.component';
 import {MaterialModule} from './material.module';
+import { MobxAngularModule } from 'mobx-angular';
+import {UserAppsDialogComponent} from './features/user-apps/pages/user-apps-dialog.component';
 import {UserInfoDialogComponent} from './features/user-info/pages/user-info-dialog.component';
-import {WidgetFrameComponent} from './features/widget-frame/pages/widget-frame.component';
-import {WidgetItemComponent} from './features/widget-item/pages/widget-item.component';
 import {WidgetsModule} from './widgets/widgets.module';
 import {WINDOW, windowFactory} from './shared/models/window.token';
-import {WorkspaceComponent} from './features/workspace/pages/workspace.component';
-
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent,
-    UserInfoDialogComponent,
-    WidgetFrameComponent,
-    WidgetItemComponent,
-    WorkspaceComponent
+    LoginComponent,
+    UserAppsDialogComponent,
+    UserInfoDialogComponent
   ],
   imports: [
+    AmplifyUIAngularModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     BrowserModule,
-    DynamicModule,
+    FormsModule,
     GridsterModule,
     MaterialModule,
+    MobxAngularModule,
+    ReactiveFormsModule,
     WidgetsModule
   ],
-  providers: [{provide: WINDOW, useFactory: windowFactory}],
+  providers: [
+    AppStateService,
+    AuthGuardService,
+    AuthService,
+    {provide: WINDOW, useFactory: windowFactory}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

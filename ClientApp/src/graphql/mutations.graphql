@@ -1,0 +1,73 @@
+# this is an auto generated file. This will be overwritten
+mutation CreateCelightCmsApps($input: CreateCelightCmsAppsInput!) {
+  createCelightCmsApps(input: $input) {
+    idApps
+    appKey
+  }
+}
+mutation UpdateCelightCmsApps($input: UpdateCelightCmsAppsInput!) {
+  updateCelightCmsApps(input: $input) {
+    idApps
+    appKey
+  }
+}
+mutation DeleteCelightCmsApps($input: DeleteCelightCmsAppsInput!) {
+  deleteCelightCmsApps(input: $input) {
+    idApps
+    appKey
+  }
+}
+mutation CreateCelightCmsCustomer($input: CreateCelightCmsCustomerInput!) {
+  createCelightCmsCustomer(input: $input) {
+    idCustomer
+    firstName
+    lastName
+    department
+    employedSince
+  }
+}
+mutation UpdateCelightCmsCustomer($input: UpdateCelightCmsCustomerInput!) {
+  updateCelightCmsCustomer(input: $input) {
+    idCustomer
+    firstName
+    lastName
+    department
+    employedSince
+  }
+}
+mutation DeleteCelightCmsCustomer($input: DeleteCelightCmsCustomerInput!) {
+  deleteCelightCmsCustomer(input: $input) {
+    idCustomer
+    firstName
+    lastName
+    department
+    employedSince
+  }
+}
+mutation CreateCelightCmsUser($input: CreateCelightCmsUserInput!) {
+  createCelightCmsUser(input: $input) {
+    idUser
+    firstName
+    lastName
+    clientId
+    id_Apps
+  }
+}
+mutation UpdateCelightCmsUser($input: UpdateCelightCmsUserInput!) {
+  updateCelightCmsUser(input: $input) {
+    idUser
+    firstName
+    lastName
+    clientId
+    id_Apps
+  }
+}
+mutation DeleteCelightCmsUser($input: DeleteCelightCmsUserInput!) {
+  deleteCelightCmsUser(input: $input) {
+    idUser
+    firstName
+    lastName
+    clientId
+    id_Apps
+  }
+}

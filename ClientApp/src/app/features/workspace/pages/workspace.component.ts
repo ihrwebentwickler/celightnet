@@ -4,7 +4,6 @@ import {CompactType, DisplayGrid, GridsterComponent, GridsterConfig, GridType} f
 import {SafeStyle} from '@angular/platform-browser';
 import {Widgets} from '../../../widgets/widgets';
 
-
 @Component({
   selector: 'app-workspace',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -70,7 +69,7 @@ export class WorkspaceComponent implements OnInit {
   };
 
   constructor(
-    @Inject(CELIGHTCMS_WIDGET_REGISTRY) private widgets: Widgets,
+    @Inject(CELIGHTCMS_WIDGET_REGISTRY) private widgets: Widgets
   ) {
   }
 

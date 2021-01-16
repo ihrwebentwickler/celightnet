@@ -1,0 +1,33 @@
+.login {
+  display: flex;
+  justify-content: center;
+
+  .mat-form-field {
+    width: 100%;
+  }
+
+  mat-card-title,
+  mat-card-content {
+    width: 318px;
+  }
+
+  .info-box {
+    height: 18px;
+    margin-top: 10px;
+    padding: 16px;
+  }
+
+  .error {
+    background-color: red;
+    color: white;
+  }
+
+  p {
+    margin-bottom: 8px;
+    vertical-align: middle;
+  }
+
+  mat-icon {
+    vertical-align: middle;
+  }
+}
