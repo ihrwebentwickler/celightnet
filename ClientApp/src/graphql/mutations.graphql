@@ -1,22 +1,4 @@
 # this is an auto generated file. This will be overwritten
-mutation CreateCelightCmsApps($input: CreateCelightCmsAppsInput!) {
-  createCelightCmsApps(input: $input) {
-    idApps
-    appKey
-  }
-}
-mutation UpdateCelightCmsApps($input: UpdateCelightCmsAppsInput!) {
-  updateCelightCmsApps(input: $input) {
-    idApps
-    appKey
-  }
-}
-mutation DeleteCelightCmsApps($input: DeleteCelightCmsAppsInput!) {
-  deleteCelightCmsApps(input: $input) {
-    idApps
-    appKey
-  }
-}
 mutation CreateCelightCmsCustomer($input: CreateCelightCmsCustomerInput!) {
   createCelightCmsCustomer(input: $input) {
     idCustomer
@@ -49,8 +31,7 @@ mutation CreateCelightCmsUser($input: CreateCelightCmsUserInput!) {
     idUser
     firstName
     lastName
-    clientId
-    id_Apps
+    widgetKeys
   }
 }
 mutation UpdateCelightCmsUser($input: UpdateCelightCmsUserInput!) {
@@ -58,8 +39,7 @@ mutation UpdateCelightCmsUser($input: UpdateCelightCmsUserInput!) {
     idUser
     firstName
     lastName
-    clientId
-    id_Apps
+    widgetKeys
   }
 }
 mutation DeleteCelightCmsUser($input: DeleteCelightCmsUserInput!) {
@@ -67,7 +47,6 @@ mutation DeleteCelightCmsUser($input: DeleteCelightCmsUserInput!) {
     idUser
     firstName
     lastName
-    clientId
-    id_Apps
+    widgetKeys
   }
 }

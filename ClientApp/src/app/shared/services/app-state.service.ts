@@ -1,56 +1,39 @@
 import {Injectable} from '@angular/core';
+import {action, computed, observable} from 'mobx-angular';
 import {Auth} from 'aws-amplify';
-import {catchError, map, tap} from 'rxjs/operators';
-import {computed, observable} from 'mobx-angular';
-import {fromPromise} from 'rxjs/internal-compatibility';
+import {AppState} from '../models/app-state';
 import {IAppState} from '../interfaces/state.interface';
-import {of, Observable} from 'rxjs';
-
-import {APIService, ListCelightCmsAppsQuery} from './API.service';
 
 @Injectable()
 export class AppStateService {
-  @observable appState$!: IAppState;
+  @observable appState!: AppState;
 
-  constructor(
-    private readonly apiService: APIService
-  ) {
-
+  constructor() {
+    this.appState = new AppState();
+    /* TODO: session-user-data is not defined by amplifiy */
+    Auth.currentSession().then((sessionUserData: any) => {
+      this.appState.appStateData.cognitoUser = {
+        attributes: {
+          email: sessionUserData.idToken.payload.email,
+          email_verified: sessionUserData.idToken.payload.email_verified,
+          sub: sessionUserData.idToken.payload.sub
+        },
+        username: sessionUserData.accessToken.payload.username
+      };
+    });
   }
 
-  @computed setWidgets(): Observable<IAppState> {
-    return fromPromise(this.apiService.ListCelightCmsApps())
-      .pipe(
-        map((data: ListCelightCmsAppsQuery) => {
-          this.appState$.widgets = data;
-          return this.appState$;
-        }));
+  @action updateAppState(appStateData: IAppState): void {
+    if (appStateData.appUser !== null) {
+      this.appState.appStateData.appUser = appStateData.appUser;
+    }
+
+    if (appStateData.cognitoUser !== null) {
+      this.appState.appStateData.cognitoUser = appStateData.cognitoUser;
+    }
   }
 
-  @computed setAppStore(): Observable<IAppState> {
-    /* TODO: session-data is not defined by amplifiy */
-    return fromPromise(Auth.currentSession())
-      .pipe(
-        tap((data: any) => {
-          this.appState$.user = {
-            attributes: {
-              email: data.idToken.payload.email,
-              email_verified: data.idToken.payload.email_verified,
-              sub: data.idToken.payload.sub
-            },
-            username: data.accessToken.payload.username
-          };
-
-          console.log(this.appState$);
-          return this.setWidgets();
-        }),
-        catchError(() => {
-          return of(this.appState$);
-        })
-      );
-  }
-
-  @computed get appStore(): Observable<IAppState> {
-    return of(this.appState$);
+  @computed get currentAppState(): AppState {
+    return this.appState;
   }
 }

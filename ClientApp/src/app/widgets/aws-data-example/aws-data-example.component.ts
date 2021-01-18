@@ -34,6 +34,7 @@ export class AwsDataExampleComponent implements OnInit {
       }
     )
     .catch((err: string) => {
+      console.log(err);
       // implement error-handling here
     });
   }

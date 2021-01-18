@@ -3,7 +3,7 @@ import {Auth} from 'aws-amplify';
 import {Observable, of} from 'rxjs';
 import {fromPromise} from 'rxjs/internal-compatibility';
 import {ICognitoUser} from '../interfaces/users.interface';
-import {map, catchError, tap} from 'rxjs/operators';
+import {map, catchError} from 'rxjs/operators';
 import {Router} from '@angular/router';
 
 @Injectable()
@@ -37,7 +37,7 @@ export class AuthService {
     fromPromise(Auth.signOut())
       .subscribe(
         () => {
-          this.router.navigate(['/login']).then(r => {
+          this.router.navigate(['/login']).then(() => {
             return true;
           });
         },

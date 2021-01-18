@@ -1,8 +1,16 @@
+import * as _ from 'lodash';
 import {ChangeDetectionStrategy, Component, Inject, OnInit, ViewChild} from '@angular/core';
-import {CELIGHTCMS_WIDGET_REGISTRY, IStoreData} from '../../../shared/interfaces/widgets.interface';
+import {APIService, GetCelightCmsUserQuery} from '../../../shared/services/API.service';
+import {AppState} from '../../../shared/models/app-state';
+import {AppStateService} from '../../../shared/services/app-state.service';
+import {CELIGHTCMS_WIDGET_REGISTRY, IWidget} from '../../../shared/interfaces/widgets.interface';
+import {catchError, switchMap} from 'rxjs/operators';
 import {CompactType, DisplayGrid, GridsterComponent, GridsterConfig, GridType} from 'angular-gridster2';
+import {fromPromise} from 'rxjs/internal-compatibility';
+import {Observable, of} from 'rxjs';
 import {SafeStyle} from '@angular/platform-browser';
 import {Widgets} from '../../../widgets/widgets';
+import {WorkspaceService} from '../services/workspace.service';
 
 @Component({
   selector: 'app-workspace',
@@ -10,7 +18,9 @@ import {Widgets} from '../../../widgets/widgets';
   templateUrl: './workspace.component.html'
 })
 export class WorkspaceComponent implements OnInit {
-  storeData?: IStoreData;
+  widgetsData!: IWidget[];
+  widgetsDataClone$: Observable<IWidget[]> | Observable<[]> = of([]);
+  store!: AppState;
   @ViewChild('grid') grid: GridsterComponent | undefined;
 
   gridOptions: GridsterConfig = {
@@ -69,7 +79,10 @@ export class WorkspaceComponent implements OnInit {
   };
 
   constructor(
-    @Inject(CELIGHTCMS_WIDGET_REGISTRY) private widgets: Widgets
+    private readonly apiService: APIService,
+    private readonly appStateService: AppStateService,
+    @Inject(CELIGHTCMS_WIDGET_REGISTRY) private widgets: Widgets,
+    private readonly workspaceService: WorkspaceService
   ) {
   }
 
@@ -79,6 +92,41 @@ export class WorkspaceComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.storeData = this.widgets.getStoreData();
+    this.widgetsData = this.widgets.getWidgetsData();
+
+    this.store = this.appStateService.currentAppState;
+    if (!this.store.appStateData.appUser && this.store.appStateData.cognitoUser) {
+      this.widgetsDataClone$ =
+        fromPromise(this.apiService.GetCelightCmsUser(this.store.appStateData.cognitoUser.attributes.sub))
+          .pipe(
+            switchMap((dataAppUser: GetCelightCmsUserQuery) => {
+              let widgetNew: IWidget[] = [];
+              if (dataAppUser && dataAppUser.widgetKeys) {
+                this.store.appStateData.appUser = dataAppUser;
+                if (this.store.appStateData.appUser.widgetKeys) {
+                  widgetNew = this.workspaceService.removeNonUserWidgets(
+                    this.widgetsData,
+                    this.store.appStateData.appUser.widgetKeys
+                  );
+                }
+              }
+              widgetNew = this.workspaceService.calculateWidgetPosition(widgetNew);
+              return of(_.cloneDeep(widgetNew));
+            }),
+            catchError((err: string) => {
+              console.log(err);
+              return of([]);
+            })
+          );
+    }
+
+    if (this.store.appStateData.appUser && this.store.appStateData.cognitoUser) {
+      let widgetNew: IWidget[];
+      widgetNew = this.workspaceService.removeNonUserWidgets(
+        this.widgetsData,
+        this.store.appStateData.appUser.widgetKeys
+      );
+      this.widgetsDataClone$ = of(_.cloneDeep(widgetNew));
+    }
   }
 }

@@ -1,9 +1,9 @@
 <div class="celightcms">
   <app-header></app-header>
   <div class="content">
-    <gridster #grid [options]="gridOptions"
+    <gridster #grid [options]="gridOptions" *ngIf="widgetsDataClone$ | async as widgetsDataClone"
               [ngStyle]="{'background-image': 'url(./assets/media/images/widget/backgrounds/' + backgroundImage + ')'}">
-      <gridster-item *ngFor="let widget of storeData?.widgets" [item]="widget">
+      <gridster-item *ngFor="let widget of widgetsDataClone" [item]="widget">
         <app-widget-frame [widget]="widget">
         </app-widget-frame>
       </gridster-item>

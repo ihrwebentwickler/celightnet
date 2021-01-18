@@ -1,21 +1,9 @@
 # this is an auto generated file. This will be overwritten
-query GetCelightCmsApps($idApps: Int!) {
-  getCelightCmsApps(idApps: $idApps) {
-    idApps
-    appKey
-  }
-}
-query ListCelightCmsApps(
-  $filter: TableCelightCmsAppsFilterInput
-  $limit: Int
-  $nextToken: String
-) {
-  listCelightCmsApps(filter: $filter, limit: $limit, nextToken: $nextToken) {
-    items {
-      idApps
-      appKey
-    }
-    nextToken
+query Get($id: ID, $meta: String) {
+  get(id: $id, meta: $meta) {
+    id
+    title
+    meta
   }
 }
 query GetCelightCmsCustomer($idCustomer: String!) {
@@ -52,8 +40,7 @@ query GetCelightCmsUser($idUser: String!) {
     idUser
     firstName
     lastName
-    clientId
-    id_Apps
+    widgetKeys
   }
 }
 query ListCelightCmsUsers(
@@ -66,8 +53,7 @@ query ListCelightCmsUsers(
       idUser
       firstName
       lastName
-      clientId
-      id_Apps
+      widgetKeys
     }
     nextToken
   }

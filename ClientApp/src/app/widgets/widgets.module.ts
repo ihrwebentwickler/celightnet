@@ -39,7 +39,6 @@ import {LoremIpsumWidgetComponent} from './lorem-ipsum/lorem-ipsum.component';
         .registerWidget(AwsDataExampleComponent)
         .withTitle('Title User-List')
         .withDescription('Get Example-Data from AWS')
-        .initApp()
     }]
 })
 export class WidgetsModule {

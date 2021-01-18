@@ -9,20 +9,6 @@ export interface SubscriptionResponse<T> {
   value: GraphQLResult<T>;
 }
 
-export type CreateCelightCmsAppsInput = {
-  idApps: number;
-  appKey: string;
-};
-
-export type UpdateCelightCmsAppsInput = {
-  idApps: number;
-  appKey?: string | null;
-};
-
-export type DeleteCelightCmsAppsInput = {
-  idApps: number;
-};
-
 export type CreateCelightCmsCustomerInput = {
   idCustomer: string;
   firstName: string;
@@ -47,37 +33,26 @@ export type CreateCelightCmsUserInput = {
   idUser: string;
   firstName: string;
   lastName: string;
-  clientId: string;
-  id_Apps: Array<number | null>;
+  widgetKeys: Array<string | null>;
 };
 
 export type UpdateCelightCmsUserInput = {
   idUser: string;
   firstName?: string | null;
   lastName?: string | null;
-  clientId?: string | null;
-  id_Apps?: Array<number | null> | null;
+  widgetKeys?: Array<string | null> | null;
 };
 
 export type DeleteCelightCmsUserInput = {
   idUser: string;
 };
 
-export type TableCelightCmsAppsFilterInput = {
-  idApps?: TableIntFilterInput | null;
-  appKey?: TableStringFilterInput | null;
-};
-
-export type TableIntFilterInput = {
-  ne?: number | null;
-  eq?: number | null;
-  le?: number | null;
-  lt?: number | null;
-  ge?: number | null;
-  gt?: number | null;
-  contains?: number | null;
-  notContains?: number | null;
-  between?: Array<number | null> | null;
+export type TableCelightCmsCustomerFilterInput = {
+  idCustomer?: TableStringFilterInput | null;
+  firstName?: TableStringFilterInput | null;
+  lastName?: TableStringFilterInput | null;
+  department?: TableStringFilterInput | null;
+  employedSince?: TableStringFilterInput | null;
 };
 
 export type TableStringFilterInput = {
@@ -93,38 +68,11 @@ export type TableStringFilterInput = {
   beginsWith?: string | null;
 };
 
-export type TableCelightCmsCustomerFilterInput = {
-  idCustomer?: TableStringFilterInput | null;
-  firstName?: TableStringFilterInput | null;
-  lastName?: TableStringFilterInput | null;
-  department?: TableStringFilterInput | null;
-  employedSince?: TableStringFilterInput | null;
-};
-
 export type TableCelightCmsUserFilterInput = {
   idUser?: TableStringFilterInput | null;
   firstName?: TableStringFilterInput | null;
   lastName?: TableStringFilterInput | null;
-  clientId?: TableStringFilterInput | null;
-  id_Apps?: TableIntFilterInput | null;
-};
-
-export type CreateCelightCmsAppsMutation = {
-  __typename: "CelightCmsApps";
-  idApps: number;
-  appKey: string;
-};
-
-export type UpdateCelightCmsAppsMutation = {
-  __typename: "CelightCmsApps";
-  idApps: number;
-  appKey: string;
-};
-
-export type DeleteCelightCmsAppsMutation = {
-  __typename: "CelightCmsApps";
-  idApps: number;
-  appKey: string;
+  widgetKeys?: TableStringFilterInput | null;
 };
 
 export type CreateCelightCmsCustomerMutation = {
@@ -159,8 +107,7 @@ export type CreateCelightCmsUserMutation = {
   idUser: string;
   firstName: string;
   lastName: string;
-  clientId: string;
-  id_Apps: Array<number | null>;
+  widgetKeys: Array<string | null>;
 };
 
 export type UpdateCelightCmsUserMutation = {
@@ -168,8 +115,7 @@ export type UpdateCelightCmsUserMutation = {
   idUser: string;
   firstName: string;
   lastName: string;
-  clientId: string;
-  id_Apps: Array<number | null>;
+  widgetKeys: Array<string | null>;
 };
 
 export type DeleteCelightCmsUserMutation = {
@@ -177,24 +123,14 @@ export type DeleteCelightCmsUserMutation = {
   idUser: string;
   firstName: string;
   lastName: string;
-  clientId: string;
-  id_Apps: Array<number | null>;
+  widgetKeys: Array<string | null>;
 };
 
-export type GetCelightCmsAppsQuery = {
-  __typename: "CelightCmsApps";
-  idApps: number;
-  appKey: string;
-};
-
-export type ListCelightCmsAppsQuery = {
-  __typename: "CelightCmsAppsConnection";
-  items: Array<{
-    __typename: "CelightCmsApps";
-    idApps: number;
-    appKey: string;
-  } | null> | null;
-  nextToken: string | null;
+export type GetQuery = {
+  __typename: "Thing";
+  id: string;
+  title: string;
+  meta: string | null;
 };
 
 export type GetCelightCmsCustomerQuery = {
@@ -224,8 +160,7 @@ export type GetCelightCmsUserQuery = {
   idUser: string;
   firstName: string;
   lastName: string;
-  clientId: string;
-  id_Apps: Array<number | null>;
+  widgetKeys: Array<string | null>;
 };
 
 export type ListCelightCmsUsersQuery = {
@@ -235,28 +170,9 @@ export type ListCelightCmsUsersQuery = {
     idUser: string;
     firstName: string;
     lastName: string;
-    clientId: string;
-    id_Apps: Array<number | null>;
+    widgetKeys: Array<string | null>;
   } | null> | null;
   nextToken: string | null;
-};
-
-export type OnCreateCelightCmsAppsSubscription = {
-  __typename: "CelightCmsApps";
-  idApps: number;
-  appKey: string;
-};
-
-export type OnUpdateCelightCmsAppsSubscription = {
-  __typename: "CelightCmsApps";
-  idApps: number;
-  appKey: string;
-};
-
-export type OnDeleteCelightCmsAppsSubscription = {
-  __typename: "CelightCmsApps";
-  idApps: number;
-  appKey: string;
 };
 
 export type OnCreateCelightCmsCustomerSubscription = {
@@ -291,8 +207,7 @@ export type OnCreateCelightCmsUserSubscription = {
   idUser: string;
   firstName: string;
   lastName: string;
-  clientId: string;
-  id_Apps: Array<number | null>;
+  widgetKeys: Array<string | null>;
 };
 
 export type OnUpdateCelightCmsUserSubscription = {
@@ -300,8 +215,7 @@ export type OnUpdateCelightCmsUserSubscription = {
   idUser: string;
   firstName: string;
   lastName: string;
-  clientId: string;
-  id_Apps: Array<number | null>;
+  widgetKeys: Array<string | null>;
 };
 
 export type OnDeleteCelightCmsUserSubscription = {
@@ -309,68 +223,13 @@ export type OnDeleteCelightCmsUserSubscription = {
   idUser: string;
   firstName: string;
   lastName: string;
-  clientId: string;
-  id_Apps: Array<number | null>;
+  widgetKeys: Array<string | null>;
 };
 
 @Injectable({
   providedIn: "root"
 })
 export class APIService {
-  async CreateCelightCmsApps(
-    input: CreateCelightCmsAppsInput
-  ): Promise<CreateCelightCmsAppsMutation> {
-    const statement = `mutation CreateCelightCmsApps($input: CreateCelightCmsAppsInput!) {
-        createCelightCmsApps(input: $input) {
-          __typename
-          idApps
-          appKey
-        }
-      }`;
-    const gqlAPIServiceArguments: any = {
-      input
-    };
-    const response = (await API.graphql(
-      graphqlOperation(statement, gqlAPIServiceArguments)
-    )) as any;
-    return <CreateCelightCmsAppsMutation>response.data.createCelightCmsApps;
-  }
-  async UpdateCelightCmsApps(
-    input: UpdateCelightCmsAppsInput
-  ): Promise<UpdateCelightCmsAppsMutation> {
-    const statement = `mutation UpdateCelightCmsApps($input: UpdateCelightCmsAppsInput!) {
-        updateCelightCmsApps(input: $input) {
-          __typename
-          idApps
-          appKey
-        }
-      }`;
-    const gqlAPIServiceArguments: any = {
-      input
-    };
-    const response = (await API.graphql(
-      graphqlOperation(statement, gqlAPIServiceArguments)
-    )) as any;
-    return <UpdateCelightCmsAppsMutation>response.data.updateCelightCmsApps;
-  }
-  async DeleteCelightCmsApps(
-    input: DeleteCelightCmsAppsInput
-  ): Promise<DeleteCelightCmsAppsMutation> {
-    const statement = `mutation DeleteCelightCmsApps($input: DeleteCelightCmsAppsInput!) {
-        deleteCelightCmsApps(input: $input) {
-          __typename
-          idApps
-          appKey
-        }
-      }`;
-    const gqlAPIServiceArguments: any = {
-      input
-    };
-    const response = (await API.graphql(
-      graphqlOperation(statement, gqlAPIServiceArguments)
-    )) as any;
-    return <DeleteCelightCmsAppsMutation>response.data.deleteCelightCmsApps;
-  }
   async CreateCelightCmsCustomer(
     input: CreateCelightCmsCustomerInput
   ): Promise<CreateCelightCmsCustomerMutation> {
@@ -449,8 +308,7 @@ export class APIService {
           idUser
           firstName
           lastName
-          clientId
-          id_Apps
+          widgetKeys
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -470,8 +328,7 @@ export class APIService {
           idUser
           firstName
           lastName
-          clientId
-          id_Apps
+          widgetKeys
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -491,8 +348,7 @@ export class APIService {
           idUser
           firstName
           lastName
-          clientId
-          id_Apps
+          widgetKeys
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -503,52 +359,26 @@ export class APIService {
     )) as any;
     return <DeleteCelightCmsUserMutation>response.data.deleteCelightCmsUser;
   }
-  async GetCelightCmsApps(idApps: number): Promise<GetCelightCmsAppsQuery> {
-    const statement = `query GetCelightCmsApps($idApps: Int!) {
-        getCelightCmsApps(idApps: $idApps) {
+  async Get(id?: string, meta?: string): Promise<GetQuery> {
+    const statement = `query Get($id: ID, $meta: String) {
+        get(id: $id, meta: $meta) {
           __typename
-          idApps
-          appKey
-        }
-      }`;
-    const gqlAPIServiceArguments: any = {
-      idApps
-    };
-    const response = (await API.graphql(
-      graphqlOperation(statement, gqlAPIServiceArguments)
-    )) as any;
-    return <GetCelightCmsAppsQuery>response.data.getCelightCmsApps;
-  }
-  async ListCelightCmsApps(
-    filter?: TableCelightCmsAppsFilterInput,
-    limit?: number,
-    nextToken?: string
-  ): Promise<ListCelightCmsAppsQuery> {
-    const statement = `query ListCelightCmsApps($filter: TableCelightCmsAppsFilterInput, $limit: Int, $nextToken: String) {
-        listCelightCmsApps(filter: $filter, limit: $limit, nextToken: $nextToken) {
-          __typename
-          items {
-            __typename
-            idApps
-            appKey
-          }
-          nextToken
+          id
+          title
+          meta
         }
       }`;
     const gqlAPIServiceArguments: any = {};
-    if (filter) {
-      gqlAPIServiceArguments.filter = filter;
+    if (id) {
+      gqlAPIServiceArguments.id = id;
     }
-    if (limit) {
-      gqlAPIServiceArguments.limit = limit;
-    }
-    if (nextToken) {
-      gqlAPIServiceArguments.nextToken = nextToken;
+    if (meta) {
+      gqlAPIServiceArguments.meta = meta;
     }
     const response = (await API.graphql(
       graphqlOperation(statement, gqlAPIServiceArguments)
     )) as any;
-    return <ListCelightCmsAppsQuery>response.data.listCelightCmsApps;
+    return <GetQuery>response.data.get;
   }
   async GetCelightCmsCustomer(
     idCustomer: string
@@ -612,8 +442,7 @@ export class APIService {
           idUser
           firstName
           lastName
-          clientId
-          id_Apps
+          widgetKeys
         }
       }`;
     const gqlAPIServiceArguments: any = {
@@ -637,8 +466,7 @@ export class APIService {
             idUser
             firstName
             lastName
-            clientId
-            id_Apps
+            widgetKeys
           }
           nextToken
         }
@@ -658,48 +486,6 @@ export class APIService {
     )) as any;
     return <ListCelightCmsUsersQuery>response.data.listCelightCmsUsers;
   }
-  OnCreateCelightCmsAppsListener: Observable<
-    SubscriptionResponse<OnCreateCelightCmsAppsSubscription>
-  > = API.graphql(
-    graphqlOperation(
-      `subscription OnCreateCelightCmsApps($idApps: Int, $appKey: String) {
-        onCreateCelightCmsApps(idApps: $idApps, appKey: $appKey) {
-          __typename
-          idApps
-          appKey
-        }
-      }`
-    )
-  ) as Observable<SubscriptionResponse<OnCreateCelightCmsAppsSubscription>>;
-
-  OnUpdateCelightCmsAppsListener: Observable<
-    SubscriptionResponse<OnUpdateCelightCmsAppsSubscription>
-  > = API.graphql(
-    graphqlOperation(
-      `subscription OnUpdateCelightCmsApps($idApps: Int, $appKey: String) {
-        onUpdateCelightCmsApps(idApps: $idApps, appKey: $appKey) {
-          __typename
-          idApps
-          appKey
-        }
-      }`
-    )
-  ) as Observable<SubscriptionResponse<OnUpdateCelightCmsAppsSubscription>>;
-
-  OnDeleteCelightCmsAppsListener: Observable<
-    SubscriptionResponse<OnDeleteCelightCmsAppsSubscription>
-  > = API.graphql(
-    graphqlOperation(
-      `subscription OnDeleteCelightCmsApps($idApps: Int, $appKey: String) {
-        onDeleteCelightCmsApps(idApps: $idApps, appKey: $appKey) {
-          __typename
-          idApps
-          appKey
-        }
-      }`
-    )
-  ) as Observable<SubscriptionResponse<OnDeleteCelightCmsAppsSubscription>>;
-
   OnCreateCelightCmsCustomerListener: Observable<
     SubscriptionResponse<OnCreateCelightCmsCustomerSubscription>
   > = API.graphql(
@@ -755,14 +541,13 @@ export class APIService {
     SubscriptionResponse<OnCreateCelightCmsUserSubscription>
   > = API.graphql(
     graphqlOperation(
-      `subscription OnCreateCelightCmsUser($idUser: String, $firstName: String, $lastName: String, $clientId: String, $id_Apps: [Int]) {
-        onCreateCelightCmsUser(idUser: $idUser, firstName: $firstName, lastName: $lastName, clientId: $clientId, id_Apps: $id_Apps) {
+      `subscription OnCreateCelightCmsUser($idUser: String, $firstName: String, $lastName: String, $widgetKeys: [String]) {
+        onCreateCelightCmsUser(idUser: $idUser, firstName: $firstName, lastName: $lastName, widgetKeys: $widgetKeys) {
           __typename
           idUser
           firstName
           lastName
-          clientId
-          id_Apps
+          widgetKeys
         }
       }`
     )
@@ -772,14 +557,13 @@ export class APIService {
     SubscriptionResponse<OnUpdateCelightCmsUserSubscription>
   > = API.graphql(
     graphqlOperation(
-      `subscription OnUpdateCelightCmsUser($idUser: String, $firstName: String, $lastName: String, $clientId: String, $id_Apps: [Int]) {
-        onUpdateCelightCmsUser(idUser: $idUser, firstName: $firstName, lastName: $lastName, clientId: $clientId, id_Apps: $id_Apps) {
+      `subscription OnUpdateCelightCmsUser($idUser: String, $firstName: String, $lastName: String, $widgetKeys: [String]) {
+        onUpdateCelightCmsUser(idUser: $idUser, firstName: $firstName, lastName: $lastName, widgetKeys: $widgetKeys) {
           __typename
           idUser
           firstName
           lastName
-          clientId
-          id_Apps
+          widgetKeys
         }
       }`
     )
@@ -789,14 +573,13 @@ export class APIService {
     SubscriptionResponse<OnDeleteCelightCmsUserSubscription>
   > = API.graphql(
     graphqlOperation(
-      `subscription OnDeleteCelightCmsUser($idUser: String, $firstName: String, $lastName: String, $clientId: String, $id_Apps: [Int]) {
-        onDeleteCelightCmsUser(idUser: $idUser, firstName: $firstName, lastName: $lastName, clientId: $clientId, id_Apps: $id_Apps) {
+      `subscription OnDeleteCelightCmsUser($idUser: String, $firstName: String, $lastName: String, $widgetKeys: [String]) {
+        onDeleteCelightCmsUser(idUser: $idUser, firstName: $firstName, lastName: $lastName, widgetKeys: $widgetKeys) {
           __typename
           idUser
           firstName
           lastName
-          clientId
-          id_Apps
+          widgetKeys
         }
       }`
     )

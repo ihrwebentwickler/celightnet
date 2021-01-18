@@ -19,9 +19,9 @@ export class UserAppsDialogComponent implements OnInit {
   user!: ICognitoUser;
 
   ngOnInit(): void {
-    this.store$ = this.appStateService.appStore;
-    this.store$.subscribe(data => {
-      console.log(data);
-    });
+    // this.store$ = this.appStateService.appStore;
+    // this.store$.subscribe(data => {
+    //   console.log(data);
+    // });
   }
 }

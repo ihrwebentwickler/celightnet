@@ -1,11 +1,11 @@
 import {ComponentFixture, TestBed, waitForAsync} from '@angular/core/testing';
-import {AwsDbExampleComponent} from './cosmos-db-example.component';
+import {AwsDataExampleComponent} from './aws-data-example.component';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
 
-describe('CosmosDbExampleComponent', () => {
-  let component: AwsDbExampleComponent;
-  let fixture: ComponentFixture<AwsDbExampleComponent>;
+describe('AwsDataExampleComponent', () => {
+  let component: AwsDataExampleComponent;
+  let fixture: ComponentFixture<AwsDataExampleComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
@@ -13,7 +13,7 @@ describe('CosmosDbExampleComponent', () => {
         HttpClientTestingModule,
         HttpClientModule
       ],
-      declarations: [AwsDbExampleComponent],
+      declarations: [AwsDataExampleComponent],
       providers: [
         HttpClient
       ]
@@ -22,7 +22,7 @@ describe('CosmosDbExampleComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AwsDbExampleComponent);
+    fixture = TestBed.createComponent(AwsDataExampleComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

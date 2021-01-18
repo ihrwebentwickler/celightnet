@@ -1,5 +1,4 @@
 import {Type} from '@angular/core';
-import {IUser} from './users.interface';
 
 export interface IWidget {
   widgetIdentKey: string;
@@ -16,11 +15,6 @@ export interface IWidget {
   disableScrollHorizontal: boolean;
   title?: string;
   description?: string;
-}
-
-export interface IStoreData {
-  user: IUser;
-  widgets: IWidget[];
 }
 
 export interface IWidgetPosition {

@@ -1,30 +1,27 @@
 import {Component, OnInit} from '@angular/core';
 import {AppStateService} from '../../../../shared/services/app-state.service';
 import {AuthService} from '../../../../shared/services/auth.service';
-import {IAppState} from '../../../../shared/interfaces/state.interface';
 import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
-import {Router} from '@angular/router';
-import {Observable} from 'rxjs';
 import {UserAppsDialogComponent} from '../../../../features/user-apps/pages/user-apps-dialog.component';
 import {UserInfoDialogComponent} from '../../../../features/user-info/pages/user-info-dialog.component';
+import {AppState} from '../../../../shared/models/app-state';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html'
 })
 export class HeaderComponent implements OnInit {
-  store$!: Observable<IAppState>;
+  store!: AppState;
 
   constructor(
     private readonly appStateService: AppStateService,
-    private readonly matDialog: MatDialog,
-    private readonly router: Router,
-    private readonly authService: AuthService
+    private readonly authService: AuthService,
+    private readonly matDialog: MatDialog
   ) {
   }
 
   ngOnInit(): void {
-    this.store$ = this.appStateService.appStore;
+    this.store = this.appStateService.currentAppState;
   }
 
   onClickLogout(): void {

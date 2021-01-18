@@ -1,7 +1,7 @@
+import {GetCelightCmsUserQuery} from '../services/API.service';
 import {ICognitoUser} from './users.interface';
-import {ListCelightCmsAppsQuery} from '../services/API.service';
 
 export interface IAppState {
-  user: ICognitoUser;
-  widgets: ListCelightCmsAppsQuery;
+  cognitoUser: ICognitoUser | null;
+  appUser: GetCelightCmsUserQuery | null;
 }

@@ -6,7 +6,7 @@
     </p>
   </div>
   <div>
-    <span>{{(store$ | async)?.user?.username}}</span>
+    <span>{{store.appStateData.cognitoUser?.username}}</span>
     <button mat-button (click)="onClickManageWidgets()">
       <mat-icon>library_add</mat-icon>
       <span>manage Widgets</span></button>

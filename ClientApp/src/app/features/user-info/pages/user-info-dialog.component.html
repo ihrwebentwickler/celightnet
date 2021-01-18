@@ -1,15 +1,16 @@
 <h1 mat-dialog-title>
   Benutzer-Info
 </h1>
-<div mat-dialog-content *ngIf="store$ | async as store">
+<div mat-dialog-content>
   <mat-list>
-    <mat-list-item>Benutzer-Name: {{store.user.username}}</mat-list-item>
+    <mat-list-item>Benutzer-Name: {{store.appStateData.cognitoUser?.username}}</mat-list-item>
     <mat-divider></mat-divider>
-    <mat-list-item>Tech-Sub: {{store.user.attributes?.sub}}</mat-list-item>
+    <mat-list-item>Tech-Sub: {{store.appStateData.cognitoUser?.attributes?.sub}}</mat-list-item>
     <mat-divider></mat-divider>
-    <mat-list-item>Email: {{store.user.attributes?.email}}</mat-list-item>
+    <mat-list-item>Email: {{store.appStateData.cognitoUser?.attributes?.email}}</mat-list-item>
     <mat-divider></mat-divider>
-    <mat-list-item>Email verifiziert: {{store.user.attributes.email_verified ? 'Ja' : 'Nein'}}</mat-list-item>
+    <mat-list-item>Email
+      verifiziert: {{store.appStateData.cognitoUser?.attributes?.email_verified ? 'Ja' : 'Nein'}}</mat-list-item>
   </mat-list>
 </div>
 <div mat-dialog-actions>

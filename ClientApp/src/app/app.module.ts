@@ -21,11 +21,11 @@ import {AuthGuardService} from './shared/services/auth-guard.service';
 import {AuthService} from './shared/services/auth.service';
 import {LoginComponent} from './features/login/pages/login.component';
 import {MaterialModule} from './material.module';
-import { MobxAngularModule } from 'mobx-angular';
+import {MobxAngularModule } from 'mobx-angular';
 import {UserAppsDialogComponent} from './features/user-apps/pages/user-apps-dialog.component';
 import {UserInfoDialogComponent} from './features/user-info/pages/user-info-dialog.component';
 import {WidgetsModule} from './widgets/widgets.module';
-import {WINDOW, windowFactory} from './shared/models/window.token';
+import {WorkspaceService} from './features/workspace/services/workspace.service';
 
 @NgModule({
   declarations: [
@@ -50,7 +50,7 @@ import {WINDOW, windowFactory} from './shared/models/window.token';
     AppStateService,
     AuthGuardService,
     AuthService,
-    {provide: WINDOW, useFactory: windowFactory}
+    WorkspaceService
   ],
   bootstrap: [AppComponent]
 })
