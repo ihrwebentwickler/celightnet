@@ -3,7 +3,6 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 import {AppStateService} from '../../../shared/services/app-state.service';
 import {AuthService} from '../../../shared/services/auth.service';
-import {IAppState} from '../../../shared/interfaces/state.interface';
 
 @Component({
   selector: 'app-login',
@@ -42,19 +41,14 @@ export class LoginComponent {
               userNotExists: false
             };
 
-            const appState: IAppState = {
-              cognitoUser: {
-                attributes: {
-                  email: userData.attributes.email,
-                  email_verified: userData.attributes.email_verified,
-                  sub: userData.attributes.sub
-                },
-                username: userData.username
+            this.appStateService.updateCognitoUserState({
+              attributes: {
+                email: userData.attributes.email,
+                email_verified: userData.attributes.email_verified,
+                sub: userData.attributes.sub
               },
-              appUser: null
-            };
-
-            this.appStateService.updateAppState(appState);
+              username: userData.username
+            });
 
             this.router.navigate(['/ws']).then(() => {
               return false;

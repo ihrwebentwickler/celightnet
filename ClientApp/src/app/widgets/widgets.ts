@@ -25,7 +25,8 @@ export class Widgets {
         widgetIdentKey: labelItem,
         component: widgetComponent,
         componentName: widgetComponent.name,
-        disableScrollHorizontal: true
+        disableScrollHorizontal: true,
+        isChecked: true
       });
     }
 

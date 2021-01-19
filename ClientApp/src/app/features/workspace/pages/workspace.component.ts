@@ -1,13 +1,14 @@
 import * as _ from 'lodash';
-import {ChangeDetectionStrategy, Component, Inject, OnInit, ViewChild} from '@angular/core';
+import {ChangeDetectionStrategy, Component, Inject, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {APIService, GetCelightCmsUserQuery} from '../../../shared/services/API.service';
 import {AppState} from '../../../shared/models/app-state';
 import {AppStateService} from '../../../shared/services/app-state.service';
+import {catchError, switchMap, takeUntil} from 'rxjs/operators';
 import {CELIGHTCMS_WIDGET_REGISTRY, IWidget} from '../../../shared/interfaces/widgets.interface';
-import {catchError, switchMap} from 'rxjs/operators';
 import {CompactType, DisplayGrid, GridsterComponent, GridsterConfig, GridType} from 'angular-gridster2';
 import {fromPromise} from 'rxjs/internal-compatibility';
-import {Observable, of} from 'rxjs';
+import {IComponentDataEmit} from '../../../shared/interfaces/state.interface';
+import {Observable, of, Subject} from 'rxjs';
 import {SafeStyle} from '@angular/platform-browser';
 import {Widgets} from '../../../widgets/widgets';
 import {WorkspaceService} from '../services/workspace.service';
@@ -17,11 +18,11 @@ import {WorkspaceService} from '../services/workspace.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './workspace.component.html'
 })
-export class WorkspaceComponent implements OnInit {
-  widgetsData!: IWidget[];
+export class WorkspaceComponent implements OnInit, OnDestroy {
+  @ViewChild('grid') grid: GridsterComponent | undefined;
+  destroy$: Subject<boolean> = new Subject<boolean>();
   widgetsDataClone$: Observable<IWidget[]> | Observable<[]> = of([]);
   store!: AppState;
-  @ViewChild('grid') grid: GridsterComponent | undefined;
 
   gridOptions: GridsterConfig = {
     gridType: GridType.Fixed,
@@ -92,7 +93,7 @@ export class WorkspaceComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.widgetsData = this.widgets.getWidgetsData();
+    this.appStateService.updateWidgetsState(this.widgets.getWidgetsData());
 
     this.store = this.appStateService.currentAppState;
     if (!this.store.appStateData.appUser && this.store.appStateData.cognitoUser) {
@@ -101,15 +102,17 @@ export class WorkspaceComponent implements OnInit {
           .pipe(
             switchMap((dataAppUser: GetCelightCmsUserQuery) => {
               let widgetNew: IWidget[] = [];
+
               if (dataAppUser && dataAppUser.widgetKeys) {
-                this.store.appStateData.appUser = dataAppUser;
-                if (this.store.appStateData.appUser.widgetKeys) {
+                this.appStateService.updateAppUserState(dataAppUser);
+                if (dataAppUser.widgetKeys) {
                   widgetNew = this.workspaceService.removeNonUserWidgets(
-                    this.widgetsData,
-                    this.store.appStateData.appUser.widgetKeys
+                    this.store.appStateData.widgets,
+                    dataAppUser.widgetKeys
                   );
                 }
               }
+
               widgetNew = this.workspaceService.calculateWidgetPosition(widgetNew);
               return of(_.cloneDeep(widgetNew));
             }),
@@ -121,12 +124,35 @@ export class WorkspaceComponent implements OnInit {
     }
 
     if (this.store.appStateData.appUser && this.store.appStateData.cognitoUser) {
-      let widgetNew: IWidget[];
-      widgetNew = this.workspaceService.removeNonUserWidgets(
-        this.widgetsData,
+      const widgetNew: IWidget[] = this.workspaceService.removeNonUserWidgets(
+        this.store.appStateData.widgets,
         this.store.appStateData.appUser.widgetKeys
       );
       this.widgetsDataClone$ = of(_.cloneDeep(widgetNew));
     }
+
+    this.appStateService.currentData$.pipe(
+      takeUntil(this.destroy$),
+    ).subscribe((actionInput: IComponentDataEmit) => {
+      if (
+        actionInput.action === 'new-init-of-widgets'
+        && this.store.appStateData.widgets
+        && this.store.appStateData.appUser
+      ) {
+
+        let widgetNew: IWidget[] = this.workspaceService.removeNonUserWidgets(
+          this.store.appStateData.widgets,
+          this.store.appStateData.appUser.widgetKeys
+        );
+
+        widgetNew = this.workspaceService.calculateWidgetPosition(widgetNew);
+        this.widgetsDataClone$ = of(_.cloneDeep(widgetNew));
+        this.grid?.updateGrid();
+      }
+    });
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next(true);
   }
 }

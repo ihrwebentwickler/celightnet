@@ -6,7 +6,8 @@ export class AppState {
   constructor() {
     this.appStateData = {
       cognitoUser: null,
-      appUser: null
+      appUser: null,
+      widgets: []
     };
   }
 }

@@ -24,6 +24,7 @@ import {MaterialModule} from './material.module';
 import {MobxAngularModule } from 'mobx-angular';
 import {UserAppsDialogComponent} from './features/user-apps/pages/user-apps-dialog.component';
 import {UserInfoDialogComponent} from './features/user-info/pages/user-info-dialog.component';
+import {UserAppDialogService} from './features/user-apps/pages/services/user-app-dialog.service';
 import {WidgetsModule} from './widgets/widgets.module';
 import {WorkspaceService} from './features/workspace/services/workspace.service';
 
@@ -50,7 +51,8 @@ import {WorkspaceService} from './features/workspace/services/workspace.service'
     AppStateService,
     AuthGuardService,
     AuthService,
-    WorkspaceService
+    WorkspaceService,
+    UserAppDialogService
   ],
   bootstrap: [AppComponent]
 })

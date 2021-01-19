@@ -15,6 +15,7 @@ export interface IWidget {
   disableScrollHorizontal: boolean;
   title?: string;
   description?: string;
+  isChecked: boolean;
 }
 
 export interface IWidgetPosition {
